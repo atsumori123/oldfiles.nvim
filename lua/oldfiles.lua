@@ -65,7 +65,7 @@ end
 -- input_char
 ----------------------------------------------------------------
 local function input_char()
-	local pat = "abcdefghijklmnopqrstuvwxyz."
+	local pat = "abcdefghijklmnopqrstuvwxyz._"
 
 	print("Filtering for 1 character: ")
 	local c = vim.fn.nr2char(vim.fn.getchar())
@@ -120,6 +120,8 @@ local function draw_buffer()
 	vim.api.nvim_buf_set_option(self.bufnr, 'modifiable', true)
 	vim.api.nvim_buf_set_lines(self.bufnr, 0, -1, false, output)
 	vim.api.nvim_buf_set_option(self.bufnr, 'modifiable', false)
+
+    vim.fn.setpos('.', {0, 1, 1, 0})
 end
 
 ----------------------------------------------------------------
