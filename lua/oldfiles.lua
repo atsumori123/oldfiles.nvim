@@ -136,7 +136,8 @@ local function filtering_item()
 	if string.len(c) ~= 0 then
 		-- filtering
 		for k,v in pairs(OldFiles) do
-			if string.find(get_filename(v), c) == 1 then
+			local s = string.sub(get_filename(v), 1, 1)
+			if s == string.lower(c) or s == string.upper(c) then
 				table.insert(w, v)
 			end
 		end
@@ -241,7 +242,7 @@ local function open_window()
 	vim.keymap.set('n', '<CR>', function() select_item("edit") end, opts)
 	vim.keymap.set('n', 'l', function() select_item("edit") end, opts)
 	vim.keymap.set('n', 'v', function() select_item("vsplit") end, opts)
-	vim.keymap.set('n', 'f', function() filtering_item() end, opts)
+	vim.keymap.set('n', 's', function() filtering_item() end, opts)
 	vim.keymap.set('n', 'd', function() delete_item_from_file_oldfiles() end, opts)
 	vim.keymap.set('n', 'q', function() close() end, opts)
 	vim.keymap.set('n', 'clean', function() remove_non_existing_item_from_oldfiles() end, opts)
